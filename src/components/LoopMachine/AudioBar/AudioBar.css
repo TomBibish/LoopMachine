@@ -1,0 +1,51 @@
+.audio__bar__container{
+    display: inline;
+}
+.bar__div{
+    width: 100%;
+    height: 90px;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+.audio__bar{
+    display: inline-block;
+    margin: 1px;
+    width: 95%;
+    height: auto;
+    padding: 0.3rem;
+    color: black;
+    border-radius: 1rem;
+}
+.progress__bar{
+    display: inline-block;
+    border: 1px transparent solid;
+    color: transparent;
+    background: transparent;
+    appearance: none;
+    position: relative;
+    outline: none;
+    width: 95%;
+    height: auto;
+    --seek-before-width: 0;
+}
+.progress__bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    z-index: 100;
+}
+.progressBar::before {
+  width: var(--seek-before-width);
+}
+.progressBar:active::-webkit-slider-thumb {
+  transform: scale(1.2);
+}
+.mute__button{
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 1px;
+    background: black;
+    border-radius: 50%;
+}
+.mute__button:hover{
+    background: transparent;
+}

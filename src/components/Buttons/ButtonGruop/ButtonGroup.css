@@ -1,0 +1,29 @@
+.media__button{
+    width: 4rem;
+    height: 4rem;
+    margin: 2px;
+    background: black;
+    border-radius: 50%;
+}
+.clicked__media__button{
+    width: 4rem;
+    height: 4rem;
+    margin: 2px;
+    background: transparent;
+    border-radius: 50%;
+}
+.clicked__media__button:hover{
+    background: black;
+}
+.media__button:hover{
+    background: transparent;
+}
+.button__container{
+    margin: auto;
+    width: 15%;
+}
+.media__button__icon{
+    width: 24px !important;
+    height: 24px !important;
+    color: aquamarine;
+}
