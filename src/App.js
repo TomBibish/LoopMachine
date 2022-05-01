@@ -54,6 +54,7 @@ function App() {
     const [toggleLoop, setToggleLoop] = useState(false)
     // Loop toggle handler - change the loop boolean element, and apply the new element to the audio files.
     const toggleLoopHandler = () =>{
+        console.log(toggleLoop)
         setToggleLoop(!toggleLoop)
         audioFiles.map(file =>
             file.file.loop = !toggleLoop

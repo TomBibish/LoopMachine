@@ -16,7 +16,7 @@ const ButtonGroup = props =>{
             <button className='media__button'  onClick={props.onStop}>
                 <BsStopCircleFill className='media__button__icon'/>
             </button>
-            <button className={props.toggleLoop === false ? 'media__button' : 'clicked__media__button'} onClick={props.onLoop}>
+            <button className={props.toggleLoop ? 'clicked__media__button': 'media__button'} onClick={props.onLoop}>
                 <ImLoop className='media__button__icon'/>
             </button>
         </div>
