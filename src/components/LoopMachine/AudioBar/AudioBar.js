@@ -6,37 +6,29 @@ const AudioBar = props =>{
     const progressBar = useRef();
     // const audioPlayer = useRef();
     const animationRef = useRef()
-
-    const [currentTime, SetCurrentTime] = useState(0)
-    const [duration, setDuration] = useState(0)
     const [muteToggle, setMuteToggle] = useState(false)
 
     useEffect(()=>{
-        setDuration(Math.floor(props.file.duration))
         progressBar.current.max = Math.floor(props.file.duration)
     }, [props.file?.current?.loadedMetadata, props.file?.current?.readyState ])
 
+    // Side effect, start the movement of the bar (In case of playing)
     useEffect(()=>{
         playing()
     }, [props.isPlay])
 
+    // Set Mute/unMute to the existing audio file
     const toggleMuteHandler = () => {
         setMuteToggle(!muteToggle)
         props.file.muted = !muteToggle
     }
-    const changeRange = () => {
-        props.file.currentTime = progressBar.current.value
-        changePlayerCurrentTime()
-    }
+    // Control the animation of the progress bar LIVE
     const whilePlaying = () =>{
         progressBar.current.value = props.file.currentTime
-        changePlayerCurrentTime()
+        progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value * 100/props.file.duration}%`)
         animationRef.current = requestAnimationFrame(whilePlaying)
     }
-    const changePlayerCurrentTime = () => {
-        progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value * 100/props.file.duration}%`)
-        SetCurrentTime(progressBar.current.value)
-    }
+    // Start and stop the progress bar changing (by if the audio plays or not)
     const playing = () => {
         if(props.isPlay){
             animationRef.current = requestAnimationFrame(whilePlaying)
@@ -58,16 +50,13 @@ const AudioBar = props =>{
                     }
                 </button>
                 <li className='audio__bar' style={{background:props.color}}>
-                    {/*<audio ref={audioPlayer} src={props.file.src} preload="metadata"/>*/}
                     <input type="range"
                            className='progress__bar'
                            min='0'
                            max={Math.floor(props.file.duration)||'17'}
                            ref={progressBar}
                            defaultValue='0'
-                           onChange={changeRange}
                            disabled={true}
-
                     />
                 </li>
             </div>

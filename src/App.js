@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState} from 'react'
 // Import all the necessary components to the App.js file.
 import Header from "./components/Header/Header";
 import AudioBar from "./components/LoopMachine/AudioBar/AudioBar";
@@ -28,26 +28,17 @@ const jibrish = new Audio(JIBRISH)
 const lead = new Audio(LEAD)
 const uuHO = new Audio(UUHO)
 const highVoc = new Audio(HIGH_VOC)
-// Change all preload attributes to auto to make sure all the sounds are loaded before using
-allTrack.preload ='auto'
-tamburineShake.preload ='auto'
-bVoc.preload ='auto'
-drums.preload ='auto'
-heHE.preload ='auto'
-jibrish.preload ='auto'
-lead.preload ='auto'
-uuHO.preload ='auto'
-highVoc.preload ='auto'
+
 // audioFiles - Arrange all the audio files in list of objects, would let me easier mapping.
-const audioFiles = [{name:'All Track', file:allTrack, color:'rgba(16,31,77,0.92)'},
-                    {name:'Tamburine Shake', file:tamburineShake, color:'rgba(28,60,154,0.92)'},
-                    {name:'B Voc', file:bVoc, color:'rgba(40,85,215,0.92)'},
-                    {name:'Drums', file:drums, color:'rgba(67,114,246,0.92)'},
-                    {name:'HeHE', file:heHE, color:'rgba(127,153,231,0.92)'},
-                    {name:'Jibrish', file:jibrish, color:'rgba(190,202,238,0.92)'},
-                    {name:'Lead', file:lead, color:'rgba(222,228,245,0.92)'},
-                    {name:'UuHo', file:uuHO, color:'rgba(232,234,241,0.92)'},
-                    {name:'high Voc', file:highVoc, color:'rgba(238,238,243,0.92)'}]
+const audioFiles = [{name:'All Track', file: allTrack, color:'rgba(16,31,77,0.92)'},
+                    {name:'Tamburine Shake', file: tamburineShake, color:'rgba(28,60,154,0.92)'},
+                    {name:'B Voc', file: bVoc, color:'rgba(40,85,215,0.92)'},
+                    {name:'Drums', file: drums, color:'rgba(67,114,246,0.92)'},
+                    {name:'HeHE', file: heHE, color:'rgba(127,153,231,0.92)'},
+                    {name:'Jibrish', file: jibrish, color:'rgba(190,202,238,0.92)'},
+                    {name:'Lead', file: lead, color:'rgba(222,228,245,0.92)'},
+                    {name:'UuHo', file: uuHO, color:'rgba(232,234,241,0.92)'},
+                    {name:'high Voc', file: highVoc, color:'rgba(238,238,243,0.92)'}]
 
 function App() {
     const [isPlay, setIsPlay] = useState(false)
@@ -60,12 +51,6 @@ function App() {
             file.file.loop = !toggleLoop
         )
     }
-    // To save time and don't have any delay in the first play - the app would load all the files at the first render.
-    // useEffect(()=>{
-    //     console.log('Load')
-    //     audioFiles.map(file =>
-    //     file.file.load())
-    // }, [])
     // Play Handler -  Play all the unMute audio files from the beginning
     const playALLHandler = () =>{
         setIsPlay(!isPlay)
