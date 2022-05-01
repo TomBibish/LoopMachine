@@ -62,7 +62,7 @@ const AudioBar = props =>{
                     <input type="range"
                            className='progress__bar'
                            min='0'
-                           max={Math.floor(props.file.duration)}
+                           max={Math.floor(props.file.duration)||'17'}
                            ref={progressBar}
                            defaultValue='0'
                            onChange={changeRange}
