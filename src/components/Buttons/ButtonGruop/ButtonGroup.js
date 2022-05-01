@@ -9,9 +9,8 @@ const ButtonGroup = props =>{
     return(
         <div className='button__container'>
             <button className='media__button' onClick={props.onPlay}>
-                {props.isPlay===true ?
-                    <AiFillPauseCircle className='media__button__icon'/>:
-                    <AiFillPlayCircle className='media__button__icon'/>
+                {props.isPlay ?
+                    <AiFillPauseCircle className='media__button__icon'/>: <AiFillPlayCircle className='media__button__icon'/>
                 }
             </button>
             <button className='media__button'  onClick={props.onStop}>

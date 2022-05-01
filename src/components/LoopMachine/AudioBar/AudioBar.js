@@ -4,22 +4,46 @@ import {GoMute} from 'react-icons/go'
 import {GoUnmute} from 'react-icons/go'
 const AudioBar = props =>{
     const progressBar = useRef();
-    const audioPlayer = useRef();
-    const[currentTime, SetCurrentTime] = useState(0)
+    // const audioPlayer = useRef();
+    const animationRef = useRef()
+
+    const [currentTime, SetCurrentTime] = useState(0)
     const [duration, setDuration] = useState(0)
-    useEffect(()=>{
-        setDuration(audioPlayer.current.duration)
-        progressBar.current.max = duration
-    }, [audioPlayer?.current?.loadedMetadata, audioPlayer?.current?.readyState ])
     const [muteToggle, setMuteToggle] = useState(false)
+
+    useEffect(()=>{
+        setDuration(Math.floor(props.file.duration))
+        progressBar.current.max = Math.floor(props.file.duration)
+    }, [props.file?.current?.loadedMetadata, props.file?.current?.readyState ])
+
+    useEffect(()=>{
+        playing()
+    }, [props.isPlay])
+
     const toggleMuteHandler = () => {
         setMuteToggle(!muteToggle)
         props.file.muted = !muteToggle
     }
     const changeRange = () => {
-        audioPlayer.current.currentTime = progressBar.current.value
-        progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value / duration * 100}%`)
+        props.file.currentTime = progressBar.current.value
+        changePlayerCurrentTime()
+    }
+    const whilePlaying = () =>{
+        progressBar.current.value = props.file.currentTime
+        changePlayerCurrentTime()
+        animationRef.current = requestAnimationFrame(whilePlaying)
+    }
+    const changePlayerCurrentTime = () => {
+        progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value * 100/props.file.duration}%`)
         SetCurrentTime(progressBar.current.value)
+    }
+    const playing = () => {
+        if(props.isPlay){
+            animationRef.current = requestAnimationFrame(whilePlaying)
+        }
+        else{
+            cancelAnimationFrame(animationRef.current)
+        }
     }
 
 
@@ -28,20 +52,22 @@ const AudioBar = props =>{
             <label>{props.name} Sounds</label>
             <div className='bar__div'>
                 <button className='mute__button' onClick={toggleMuteHandler}>
-                    {muteToggle===false
+                    {muteToggle === false
                         ? <GoMute className='media__button__icon'/> :
                         <GoUnmute className='media__button__icon'/>
                     }
                 </button>
                 <li className='audio__bar' style={{background:props.color}}>
-
-                    <audio ref={audioPlayer} src={props.file.src} preload="metadata"/>
+                    {/*<audio ref={audioPlayer} src={props.file.src} preload="metadata"/>*/}
                     <input type="range"
                            className='progress__bar'
                            min='0'
+                           max={Math.floor(props.file.duration)}
                            ref={progressBar}
                            defaultValue='0'
                            onChange={changeRange}
+                           disabled={true}
+
                     />
                 </li>
             </div>

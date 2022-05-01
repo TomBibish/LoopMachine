@@ -58,7 +58,7 @@ function App() {
     // Play Handler -  Play all the unMute audio files from the beginning
     const playALLHandler = () =>{
         setIsPlay(!isPlay)
-        if(!isPlay ===true) {
+        if(!isPlay === true) {
             audioFiles.map(file =>
                 file.file.play())
         }
@@ -78,7 +78,10 @@ function App() {
   return (
     <>
       <Header/>
-      <AudioBarList allFiles={audioFiles}/>
+      <AudioBarList
+          allFiles={audioFiles}
+          isPlay={isPlay}
+      />
       <ButtonGroup
           onStop={stopALLHandler}
           onPlay={playALLHandler}
