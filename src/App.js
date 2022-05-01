@@ -28,6 +28,16 @@ const jibrish = new Audio(JIBRISH)
 const lead = new Audio(LEAD)
 const uuHO = new Audio(UUHO)
 const highVoc = new Audio(HIGH_VOC)
+// Change all preload attributes to auto to make sure all the sounds are loaded before using
+allTrack.preload ='auto'
+tamburineShake.preload ='auto'
+bVoc.preload ='auto'
+drums.preload ='auto'
+heHE.preload ='auto'
+jibrish.preload ='auto'
+lead.preload ='auto'
+uuHO.preload ='auto'
+highVoc.preload ='auto'
 // audioFiles - Arrange all the audio files in list of objects, would let me easier mapping.
 const audioFiles = [{name:'All Track', file:allTrack, color:'rgba(16,31,77,0.92)'},
                     {name:'Tamburine Shake', file:tamburineShake, color:'rgba(28,60,154,0.92)'},
@@ -38,7 +48,6 @@ const audioFiles = [{name:'All Track', file:allTrack, color:'rgba(16,31,77,0.92)
                     {name:'Lead', file:lead, color:'rgba(222,228,245,0.92)'},
                     {name:'UuHo', file:uuHO, color:'rgba(232,234,241,0.92)'},
                     {name:'high Voc', file:highVoc, color:'rgba(238,238,243,0.92)'}]
-
 
 function App() {
     const [isPlay, setIsPlay] = useState(false)
