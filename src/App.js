@@ -61,11 +61,11 @@ function App() {
         )
     }
     // To save time and don't have any delay in the first play - the app would load all the files at the first render.
-    useEffect(()=>{
-        console.log('Load')
-        audioFiles.map(file =>
-        file.file.load())
-    }, [])
+    // useEffect(()=>{
+    //     console.log('Load')
+    //     audioFiles.map(file =>
+    //     file.file.load())
+    // }, [])
     // Play Handler -  Play all the unMute audio files from the beginning
     const playALLHandler = () =>{
         setIsPlay(!isPlay)
@@ -84,7 +84,6 @@ function App() {
         audioFiles.map(file => {
             file.file.pause()
             file.file.currentTime = 0
-            file.file.load()
         })
     }
   return (
