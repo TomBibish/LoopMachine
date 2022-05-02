@@ -45,8 +45,8 @@ const AudioBar = props =>{
             <div className='bar__div'>
                 <button className='mute__button' onClick={toggleMuteHandler}>
                     {muteToggle === false
-                        ? <GoMute className='media__button__icon'/> :
-                        <GoUnmute className='media__button__icon'/>
+                        ? <GoUnmute className='media__button__icon'/>:
+                          <GoMute className='media__button__icon'/>
                     }
                 </button>
                 <li className='audio__bar' style={{ background:props.color}}>

@@ -61,3 +61,13 @@
 .mute__button:hover{
     background: transparent;
 }
+@media screen and (max-width: 1024px) {
+.audio__bar{
+    width: 90%;
+}
+}
+@media screen and (max-width: 600px) {
+    .audio__bar{
+        width: 85%;
+    }
+}
