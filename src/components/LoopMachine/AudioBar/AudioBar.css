@@ -15,6 +15,7 @@
     border-radius: 1rem;
     border: 1px black solid;
 }
+/*The main progress bar styling */
 .progress__bar__main{
     cursor: vertical-text;
     --seek-before-width:0;
@@ -28,6 +29,7 @@
     outline: none;
     background: transparent;
 }
+/*The main cursor, would represent the audio file current time */
 .progress__bar__main::-webkit-slider-thumb {
     -webkit-appearance: none;
     height: 38rem;
@@ -37,13 +39,13 @@
     cursor: col-resize;
     background-color: #ffffff;
 }
+/*Progress bar styling for all the non main bars. */
 .progress__bar__sub{
     --seek-before-width:0;
     border-radius: 10px;
     height: 1rem;
-    /*border: 1px black solid;*/
     appearance: none;
-
+/*Non visible cursor for the non main bars*/
 }
 .progress__bar__sub::-webkit-slider-thumb {
     -webkit-appearance: none;

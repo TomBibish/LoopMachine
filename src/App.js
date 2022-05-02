@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 // Import all the necessary components to the App.js file.
 import Header from "./components/Header/Header";
-import AudioBar from "./components/LoopMachine/AudioBar/AudioBar";
 import AudioBarList from "./components/LoopMachine/AudioBarList/AudioBarList";
 import ButtonGroup from "./components/Buttons/ButtonGruop/ButtonGroup";
 
@@ -15,10 +14,11 @@ import HIGH_VOC from '../src/assets/mp3_files/HIGH VOC.mp3'
 import JIBRISH from '../src/assets/mp3_files/JIBRISH.mp3'
 import LEAD from '../src/assets/mp3_files/LEAD 1.mp3'
 import UUHO from '../src/assets/mp3_files/UUHO VOC.mp3'
+import {Spinner} from "react-bootstrap";
 
 
 
-//Save all the mp3.files as Audio elements.
+//Save all the mp3.files as Audio JS elements.
 const allTrack = new Audio(ALL_TRACK)
 const tamburineShake = new Audio(TAMBOURINE_SHAKE)
 const bVoc = new Audio(B_VOC)
@@ -41,11 +41,12 @@ const audioFiles = [{name:'All Track', file: allTrack, color:'rgba(16,31,77,0.92
                     {name:'UuHo', file: uuHO, color:'rgba(232,234,241,0.92)', cssCLass:'progress__bar__sub'},
                     {name:'high Voc', file: highVoc, color:'rgba(238,238,243,0.92)', cssCLass:'progress__bar__sub'}]
 
+//The main component of the app, every component is root of this component
 function App() {
     const [counter, setCounter] = useState(0)
     const [isPlay, setIsPlay] = useState(false)
     const [toggleLoop, setToggleLoop] = useState(false)
-    // Function that check if the fsong is ready and add 1 to the counter
+    // Function that check if the song is ready and add 1 to the counter
     const changeCounterHandler = (event) => {
         setCounter((prevCounter) => prevCounter + 1)
         event.path[0].removeEventListener('canplaythrough', changeCounterHandler)
@@ -60,14 +61,15 @@ function App() {
         })
     },[])
 
-    // Loop toggle handler - change the loop boolean element, and apply the new element to the audio files.
+    // Loop toggle handler - change the loop boolean element, and apply the new element for all the audio files.
     const toggleLoopHandler = () =>{
         setToggleLoop(!toggleLoop)
         audioFiles.map(file =>
             file.file.loop = !toggleLoop
         )
     }
-    // Play Handler -  Play all the unMute audio files from the beginning
+    // Play Handler -  Play all the unMute audio files. when pressed the play button became Pause button.
+    // Pause Handler - Stop the audio files, another press will return you to the except moment in all the audio files
     const playALLHandler = () =>{
         setIsPlay(!isPlay)
         if(!isPlay === true && (counter === 9)) {
@@ -93,17 +95,22 @@ function App() {
   return (
     <>
       <Header/>
-      <AudioBarList
+        {counter === 9 &&<AudioBarList
           allFiles={audioFiles}
           isPlay={isPlay}
-      />
-      <ButtonGroup
+      />}
+        {counter !== 9 &&
+            <div className='spinner__div'>
+                <h3>Loading Audio Files...</h3>
+                <Spinner animation="border" />
+            </div>}
+      {counter === 9 &&<ButtonGroup
           onStop={stopALLHandler}
           onPlay={playALLHandler}
           toggleLoop={toggleLoop}
           onLoop={toggleLoopHandler}
           isPlay={isPlay}
-      />
+      />}
     </>
   );
 }

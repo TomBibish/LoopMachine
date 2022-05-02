@@ -4,15 +4,10 @@ import {GoMute} from 'react-icons/go'
 import {GoUnmute} from 'react-icons/go'
 const AudioBar = props =>{
     const progressBar = useRef();
-    // const audioPlayer = useRef();
-    const animationRef = useRef()
+    const animationRef = useRef();
     const [muteToggle, setMuteToggle] = useState(false)
 
-    useEffect(()=>{
-        progressBar.current.max = Math.floor(props.file.duration)
-    }, [props.file?.current?.loadedMetadata, props.file?.current?.readyState ])
-
-    // Side effect, start the movement of the bar (In case of playing)
+    // Side effect, start the movement of the bar (In case of playing or not)
     useEffect(()=>{
         playing()
     }, [props.isPlay])
@@ -43,12 +38,14 @@ const AudioBar = props =>{
         <div className={'audio__bar__container'}>
             <label>{props.name} Sounds</label>
             <div className='bar__div'>
+                {/*Mute/Unmute button*/}
                 <button className='mute__button' onClick={toggleMuteHandler}>
                     {muteToggle === false
                         ? <GoUnmute className='media__button__icon'/>:
                           <GoMute className='media__button__icon'/>
                     }
                 </button>
+                {/*Audio bar for every audio file */}
                 <li className='audio__bar' style={{ background:props.color}}>
                     <input type="range"
                            className={props.cssClass}

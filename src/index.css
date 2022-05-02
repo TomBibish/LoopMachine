@@ -5,3 +5,7 @@ body {
   font-family: 'Poppins', sans-serif;
   color: gainsboro;
 }
+.spinner__div{
+  display: flex;
+  justify-content: center;
+}
