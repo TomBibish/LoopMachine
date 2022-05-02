@@ -5,7 +5,26 @@ body {
   font-family: 'Poppins', sans-serif;
   color: gainsboro;
 }
-.spinner__div{
+.loading__div{
   display: flex;
   justify-content: center;
+}
+.loading__bar{
+  height: 30px;
+  width: 300px;
+  background-color: black;
+  border-radius: 1rem;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+.loading__done{
+  border-radius: 1rem;
+  background: linear-gradient(to left, #f2709c, #ff9472);
+  height: 100%;
+  width: 0;
+  display: inline-block;
+  justify-content: center;
+  box-shadow: 0 3px 3px -5px #f2709c, 0 2px 5px #ff9472;
+  opacity:0;
+
 }
