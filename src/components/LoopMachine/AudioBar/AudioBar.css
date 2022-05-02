@@ -13,27 +13,34 @@
     padding: 0.3rem;
     color: black;
     border-radius: 1rem;
+    border: 1px black solid;
 }
 .progress__bar__main{
     cursor: vertical-text;
     --seek-before-width:0;
-    /*border: 1px black solid;*/
     accent-color: white;
-    /*appearance: none;*/
+    appearance: none;
     width: 100%;
     position: relative;
     border-radius: 10px;
-    height: 1.4rem;
+    height: 1rem;
     z-index: 0;
     outline: none;
     background: transparent;
 }
 .progress__bar__main::-webkit-slider-thumb {
     -webkit-appearance: none;
-    z-index: 100;
+    height: 39rem;
+    transform: translateY(290px);
+    width: 1px;
+    z-index: 0;
+    cursor: col-resize;
+    background-color: #ffffff;
 }
 .progress__bar__sub{
     --seek-before-width:0;
+    border-radius: 10px;
+    height: 1rem;
     /*border: 1px black solid;*/
     appearance: none;
 

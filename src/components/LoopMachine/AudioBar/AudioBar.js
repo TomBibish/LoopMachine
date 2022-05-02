@@ -49,7 +49,7 @@ const AudioBar = props =>{
                         <GoUnmute className='media__button__icon'/>
                     }
                 </button>
-                <li className='audio__bar' style={{background:props.color}}>
+                <li className='audio__bar' style={{ background:props.color}}>
                     <input type="range"
                            className={props.cssClass}
                            min='0'
