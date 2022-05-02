@@ -30,8 +30,8 @@
 }
 .progress__bar__main::-webkit-slider-thumb {
     -webkit-appearance: none;
-    height: 39rem;
-    transform: translateY(290px);
+    height: 38rem;
+    transform: translateY(281px);
     width: 1px;
     z-index: 0;
     cursor: col-resize;
