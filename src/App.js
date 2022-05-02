@@ -45,9 +45,10 @@ function App() {
     const [counter, setCounter] = useState(0)
     const [isPlay, setIsPlay] = useState(false)
     const [toggleLoop, setToggleLoop] = useState(false)
-    // Function that check if the song is ready and add 1 to the counter
-    const changeCounterHandler = () => {
-    setCounter((prevCounter)=> prevCounter+1)
+    // Function that check if the fsong is ready and add 1 to the counter
+    const changeCounterHandler = (event) => {
+        setCounter((prevCounter) => prevCounter + 1)
+        event.path[0].removeEventListener('canplaythrough', changeCounterHandler)
     }
 
     // Effect only when load the page for the very first time,
@@ -69,7 +70,7 @@ function App() {
     // Play Handler -  Play all the unMute audio files from the beginning
     const playALLHandler = () =>{
         setIsPlay(!isPlay)
-        if(!isPlay === true && (counter % 9 === 0)) {
+        if(!isPlay === true && (counter === 9)) {
             audioFiles.map(file =>
                 file.file.play())
         }
@@ -89,7 +90,6 @@ function App() {
             file.file.currentTime = 0
         })
     }
-    console.log(counter)
   return (
     <>
       <Header/>
