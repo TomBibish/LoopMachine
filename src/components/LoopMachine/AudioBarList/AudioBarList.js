@@ -11,6 +11,7 @@ const AudioBarList = props =>{
                         file={file.file}
                         color={file.color}
                         isPlay={props.isPlay}
+                        cssClass={file.cssCLass}
                     />
         ))}
     </ul>

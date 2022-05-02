@@ -51,7 +51,7 @@ const AudioBar = props =>{
                 </button>
                 <li className='audio__bar' style={{background:props.color}}>
                     <input type="range"
-                           className='progress__bar'
+                           className={props.cssClass}
                            min='0'
                            max={Math.floor(props.file.duration)||'17'}
                            ref={progressBar}

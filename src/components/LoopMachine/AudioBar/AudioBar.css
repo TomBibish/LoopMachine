@@ -14,7 +14,7 @@
     color: black;
     border-radius: 1rem;
 }
-.progress__bar{
+.progress__bar__main{
     cursor: vertical-text;
     --seek-before-width:0;
     /*border: 1px black solid;*/
@@ -28,7 +28,17 @@
     outline: none;
     background: transparent;
 }
-.progress__bar::-webkit-slider-thumb {
+.progress__bar__main::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    z-index: 100;
+}
+.progress__bar__sub{
+    --seek-before-width:0;
+    /*border: 1px black solid;*/
+    appearance: none;
+
+}
+.progress__bar__sub::-webkit-slider-thumb {
     -webkit-appearance: none;
     z-index: 100;
 }

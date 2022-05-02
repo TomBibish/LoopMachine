@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, {useEffect, useState} from 'react'
 // Import all the necessary components to the App.js file.
 import Header from "./components/Header/Header";
 import AudioBar from "./components/LoopMachine/AudioBar/AudioBar";
@@ -29,23 +29,38 @@ const lead = new Audio(LEAD)
 const uuHO = new Audio(UUHO)
 const highVoc = new Audio(HIGH_VOC)
 
+
 // audioFiles - Arrange all the audio files in list of objects, would let me easier mapping.
-const audioFiles = [{name:'All Track', file: allTrack, color:'rgba(16,31,77,0.92)'},
-                    {name:'Tamburine Shake', file: tamburineShake, color:'rgba(28,60,154,0.92)'},
-                    {name:'B Voc', file: bVoc, color:'rgba(40,85,215,0.92)'},
-                    {name:'Drums', file: drums, color:'rgba(67,114,246,0.92)'},
-                    {name:'HeHE', file: heHE, color:'rgba(127,153,231,0.92)'},
-                    {name:'Jibrish', file: jibrish, color:'rgba(190,202,238,0.92)'},
-                    {name:'Lead', file: lead, color:'rgba(222,228,245,0.92)'},
-                    {name:'UuHo', file: uuHO, color:'rgba(232,234,241,0.92)'},
-                    {name:'high Voc', file: highVoc, color:'rgba(238,238,243,0.92)'}]
+const audioFiles = [{name:'All Track', file: allTrack, color:'rgba(16,31,77,0.92)', cssCLass:'progress__bar__main'},
+                    {name:'Tamburine Shake', file: tamburineShake, color:'rgba(28,60,154,0.92)', cssCLass:'progress__bar__sub'},
+                    {name:'B Voc', file: bVoc, color:'rgba(40,85,215,0.92)', cssCLass:'progress__bar__sub'},
+                    {name:'Drums', file: drums, color:'rgba(67,114,246,0.92)', cssCLass:'progress__bar__sub'},
+                    {name:'HeHE', file: heHE, color:'rgba(127,153,231,0.92)', cssCLass:'progress__bar__sub'},
+                    {name:'Jibrish', file: jibrish, color:'rgba(190,202,238,0.92)', cssCLass:'progress__bar__sub'},
+                    {name:'Lead', file: lead, color:'rgba(222,228,245,0.92)', cssCLass:'progress__bar__sub'},
+                    {name:'UuHo', file: uuHO, color:'rgba(232,234,241,0.92)', cssCLass:'progress__bar__sub'},
+                    {name:'high Voc', file: highVoc, color:'rgba(238,238,243,0.92)', cssCLass:'progress__bar__sub'}]
 
 function App() {
+    const [counter, setCounter] = useState(0)
     const [isPlay, setIsPlay] = useState(false)
     const [toggleLoop, setToggleLoop] = useState(false)
+    // Function that check if the song is ready and add 1 to the counter
+    const changeCounterHandler = () => {
+    setCounter((prevCounter)=> prevCounter+1)
+    }
+
+    // Effect only when load the page for the very first time, load all the files and check if they properly loaded
+    useEffect(()=>{
+
+        audioFiles.map(file => {
+        file.file.load()
+        file.file.addEventListener('canplaythrough', changeCounterHandler)
+        })
+    },[])
+
     // Loop toggle handler - change the loop boolean element, and apply the new element to the audio files.
     const toggleLoopHandler = () =>{
-        console.log(toggleLoop)
         setToggleLoop(!toggleLoop)
         audioFiles.map(file =>
             file.file.loop = !toggleLoop
@@ -54,13 +69,16 @@ function App() {
     // Play Handler -  Play all the unMute audio files from the beginning
     const playALLHandler = () =>{
         setIsPlay(!isPlay)
-        if(!isPlay === true) {
+        if(!isPlay === true && counter === 9) {
             audioFiles.map(file =>
                 file.file.play())
         }
         else{
-           audioFiles.map(file =>
-                file.file.pause())
+           audioFiles.map(file => {
+                   file.file.pause()
+               }
+           )
+
         }
     }
     // Stop Handler -  Stop all the Files and send them back to the beginning
@@ -71,6 +89,7 @@ function App() {
             file.file.currentTime = 0
         })
     }
+    console.log(counter)
   return (
     <>
       <Header/>
