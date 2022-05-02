@@ -42,16 +42,6 @@ const audioFiles = [{name:'All Track', file: allTrack, color:'rgba(16,31,77,0.92
 
 //The main component of the app, every component is root of this component
 function App() {
-    const Progress = ({done}) =>(
-                <div className='loading__bar'>
-                    <div className='loading__done' style={{
-                    opacity:1,
-                    width:`${done * 11}%`
-                }}>
-                        {done*11}%
-                    </div>
-                </div>
-    )
     const [counter, setCounter] = useState(0)
     const [isPlay, setIsPlay] = useState(false)
     const [toggleLoop, setToggleLoop] = useState(false)
@@ -101,6 +91,17 @@ function App() {
             file.file.currentTime = 0
         })
     }
+    // Little component that show the progress of loading the files.
+    const Progress = ({done}) =>(
+                <div className='loading__bar'>
+                    <div className='loading__done' style={{
+                    opacity:1,
+                    width:`${done * 11}%`
+                }}>
+                        {done*11}%
+                    </div>
+                </div>
+    )
   return (
     <>
       <Header/>
