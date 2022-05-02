@@ -14,7 +14,6 @@ import HIGH_VOC from '../src/assets/mp3_files/HIGH VOC.mp3'
 import JIBRISH from '../src/assets/mp3_files/JIBRISH.mp3'
 import LEAD from '../src/assets/mp3_files/LEAD 1.mp3'
 import UUHO from '../src/assets/mp3_files/UUHO VOC.mp3'
-import {Spinner} from "react-bootstrap";
 
 
 
@@ -102,7 +101,6 @@ function App() {
         {counter !== 9 &&
             <div className='spinner__div'>
                 <h3>Loading Audio Files...</h3>
-                <Spinner animation="border" />
             </div>}
       {counter === 9 &&<ButtonGroup
           onStop={stopALLHandler}
