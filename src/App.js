@@ -50,9 +50,9 @@ function App() {
     setCounter((prevCounter)=> prevCounter+1)
     }
 
-    // Effect only when load the page for the very first time, load all the files and check if they properly loaded
+    // Effect only when load the page for the very first time,
+    // load all the files and check if they properly loaded with event listener that check if the audio loaded 100%
     useEffect(()=>{
-
         audioFiles.map(file => {
         file.file.load()
         file.file.addEventListener('canplaythrough', changeCounterHandler)
@@ -69,7 +69,7 @@ function App() {
     // Play Handler -  Play all the unMute audio files from the beginning
     const playALLHandler = () =>{
         setIsPlay(!isPlay)
-        if(!isPlay === true && counter === 9) {
+        if(!isPlay === true && (counter % 9 === 0)) {
             audioFiles.map(file =>
                 file.file.play())
         }
